@@ -9,3 +9,5 @@ output: html_document
 *italics*
 
 **bold** 
+
+Rstudio index.Rmd -> knit into html, use GitHub desktop, commit, and press fetch, should update html
