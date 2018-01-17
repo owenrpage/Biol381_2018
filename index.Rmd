@@ -9,12 +9,12 @@ output:
 ---
 <p align="center">
 
-## Owen Page
+## Owen Page's Webpage
 
 email: opage@uvm.edu
 
-<img src= "Owen.jpg" width="200" : height="200">
+<img src= "Owen.jpg" width="300" : height="300">
 
 * **Fun fact**: I am an avid Newcastle United fan.
-* [My GitHub homepage: (https://github.com/owenrpage/Biol381_2018/)]
-* [My  BIOL 381 website: (https://owenrpage.github.io/Biol381_2018/)]
+* My GitHub homepage: https://github.com/owenrpage/Biol381_2018/
+* My  BIOL 381 website: https://owenrpage.github.io/Biol381_2018/
