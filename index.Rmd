@@ -1,0 +1,11 @@
+---
+title: "Biol381_webpage"
+author: "Owen R Page"
+date: "January 17, 2018"
+output: html_document
+---
+## Creates a title
+
+*italics*
+
+**bold** 
