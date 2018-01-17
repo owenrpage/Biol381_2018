@@ -2,7 +2,10 @@
 title: "Biol381_webpage"
 author: "Owen R Page"
 date: "January 17, 2018"
-output: html_document
+output:  
+  prettydoc::html_pretty:
+    theme: leonids
+    highlight: github
 ---
 ## Creates a title
 
