@@ -13,6 +13,7 @@ output:
 
 email: opage@uvm.edu
 
+<img src= "Owen.jpg" width="200" : height="200">
 
 * **Fun fact**: I am an avid Newcastle United fan.
 * [My GitHub homepage: (https://github.com/owenrpage/Biol381_2018/)]
