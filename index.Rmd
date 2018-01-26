@@ -20,6 +20,6 @@ email: opage@uvm.edu
 * My  BIOL 381 website: https://owenrpage.github.io/Biol381_2018/
 
 ### Homework
-+ [Homework 2](first_mech_chart.html)
++ [Homework 2](diagram_2.html)
 
 
