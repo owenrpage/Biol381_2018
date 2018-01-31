@@ -37,20 +37,16 @@ knitr::opts_chunk$set(echo = FALSE)
 
 
 ## Two images
-<img src= "image2.jpg" width="100" : height="100">
-<top> ![](Owen.jpg) <top>
-<down> ![](Owen.jpg) <down>
+<right><img src= "image2.jpg" width="300" : height="300"><right>
+<left><img src= "image1.jpg" width="300" : height="300"><left>
 
 ## Two images with captions
-
+<right><img src= "image2.jpg" width="300" : height="300"><right>
+This is a Western Blot of e-cadherin and ZO1
+<left><img src= "image1.jpg" width="300" : height="300"><left>
+This is a Western Blot of pSTAT6 and ASM
 ## Two images with overlaid captions
 
-```{r fig.width=4, fig.height=10,echo=FALSE}
-##library(png)
-##library(grid)
-##img <- readPNG(value)
-## grid.raster(img)
-```
 \begin{picture}(320,250)
 \put(85,75){\includegraphics[height=6cm] 
 {Owen.jpg}}

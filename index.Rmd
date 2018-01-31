@@ -21,5 +21,5 @@ email: opage@uvm.edu
 
 ### Homework
 + [Homework 2](diagram_2.html)
-
++ [Homework 3](HW2Beamer.html)
 
