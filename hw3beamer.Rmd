@@ -54,3 +54,4 @@ This is my first slide and here is a picture of myself (as seen on my website).
 ## Two images with overlaid captions
 ---
 
+```\noindent\hspace\{<position>}<text>``` and putting two pictures in one beamer slide
