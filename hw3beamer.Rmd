@@ -1,19 +1,25 @@
 ---
-title: "Untitled"
+title: "The Role of epithelial c-Jun NH2-Terminal Kinase 1 in house dust mite induced pulmonary remodeling"
+Abstract:
 author: "Owen R. Page"
-date: "January 31, 2018"
+date: "February 1st, 2018"
 output: 
-  ioslides_presentation: 
+  beamer_presentation: 
+    colortheme: seahorse
     incremental: yes
+    theme: Berlin
 ---
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = FALSE)
 ```
 
-## First Slide
-This is my first slide and here is a picture of myself (as seen on my website).
-
+## Overview
+- Introduction
+- Hypothesis
+-Methods
+- Results/ Analysis
+-Bigger Picture
 <center> ![Picture of myself](Owen.jpg) <center> 
 
 ## Slide with incremental bullet points.

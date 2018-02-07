@@ -26,4 +26,4 @@ A photo of myself:
 ### Homework:
 + [Homework 2](diagram_hw2.html)
 + [Homework 3 (placeholder for now)](HW2Beamer.html)
-
++ [Homework 4](hw.html)

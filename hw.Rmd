@@ -1,0 +1,161 @@
+---
+title: "Homework4"
+author: "Owen R. Page"
+date: "February 7, 2018"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+1) Suppose x = 1.1, a = 2.2, and b = 3.3. Assign each expression to the value of the variable zand print the value stored in z.
+
+a) x^a^b
+```{r}
+x= 1.1
+a=2.2
+b=3.3
+z <- x^(a^b)
+print(z) # 3.61714
+```
+#
+
+b) (x^a)^b
+```{r}
+z <- (x^a)^b
+print(z) #1.997611
+
+```
+c) 3x^3+2x^2+1
+```{r}
+z <- (3*x^3)+(2*x^2)+1
+print(z) # 7.413
+```
+d) The digit in the second place of z (hint: use floor() and/or &&)
+```{r}
+floor(z-3)
+floor((z %% floor(z))*10) #
+```
+
+2) Using the rep and seq functions, create the following vectors:
+a) (1,2,3,4,5,6,7,8,7,6,5,4,3,2,1)
+```{r}
+vec <- (c(seq(1:8), rev(c(seq(1:7)))))
+print(vec)
+```
+
+b) (1,2,2,3,3,3,4,4,4,4,5,5,5,5,5)
+```{r}
+vec <- c(seq(1:5))
+rep(x=vec,times=vec)
+```
+
+c) (5,4,4,3,3,3,2,2,2,2,1,1,1,1,1)
+```{r}
+vec <- c(5:1)
+rep(x=vec,times=1:5)
+```
+
+3) Create a vector of two random uniform numbers. In a spatial map, these can be interpreted as x and y coordinates that give the location of an individual (such as a marked forest tree in a plot that has been mapped). Using one of R’s inverse trigonometry functions (asin(), acos(), or atan()), convert these numbers into polar coordinates (If you don’t know what polar coordinates are, read about them on the web or in your calculus textbook).
+```{r}
+set.seed(100)
+b<- runif(2)
+# pythagorean
+r <- sqrt(b[1]^2+ b[2]^2)
+#finding theta
+theta=atan(b[2]/b[1])
+polarCoor <- c(r,theta)
+print(polarCoor) # .4014, .6970
+```
+
+
+4) Suppose that queue <- c("sheep", "fox", "owl", "ant") and that queue represents the animals that are lined up to enter Noah’s Ark, with the sheep at the front of the line. Using R expressions, update the queue successively as
+
+a) the serpent arrives;
+```{r}
+queue <- c('sheep', 'fox', 'owl','ant')
+queue[5] <- "serpent"
+print(queue)
+```
+
+b) the sheep enters the ark;
+```{r}
+queue <-queue[-1]
+print(queue)
+```
+
+c) the donkey arrives and talks his way to the front of the line;
+```{r}
+queue<-c("donkey",queue)
+print(queue)
+```
+
+d )the serpent gets impatient and leaves;
+```{r}
+queue <- queue[-5]
+print(queue)
+```
+
+e) the owl gets bored and leaves;
+```{r}
+queue <- queue[-3]
+print(queue)
+```
+
+f) the aphid arrives and the ant invites him to cut in line.
+```{r}
+queue<-c(queue[1],queue[2],"aphid",queue[3])
+print(queue)
+```
+
+g) Finally, determine the position of the aphid in the line.
+```{r}
+ queue=='aphid' # FALSE FALSE TRUE FALSE therefore position 3
+```
+
+5)Use R to create a vector of all of the integers from 1 to 100 that are not divisible by 2, 3, or 7.
+```{r}
+z <- 1:100
+z <- z[z %%2 !=0 & z%%3 !=0 & z%%7 !=0] 
+print(z)
+```
+ 
+6) Create a vector z of 1000 random uniform numbers.
+create a vector that contains 3 numbers: the proportion of the numbers in z that are less than 0.10, greater than 0.90, and between 0.45 and 0.55.
+Making successive copies of z, transform your vector of uniform numbers in the following ways:
+a) log (base 10) of z
+```{r}
+z <- runif(1:1000)
+y <- z[z>.45]
+zNewVector <- c(sum((z<.1)/1000), sum((z>.9)/1000), sum((y<.55)/1000))
+print(zNewVector) # [1] 0.107 0.104 0.095
+# A log10(z)
+z1 <- log10(z)
+y <- z1[z1>.45]
+z1NewVector <- c(sum((z1<.1)/1000), sum((z1>.9)/1000), sum((y<.55)/1000))
+print(z1NewVector) # [1] 1 0 0
+```
+
+b)z^2
+```{r}
+z2 <- z^2
+y <- z2[z2>.45]
+z2NewVector <- c(sum((z2<.1)/1000), sum((z2>.9)/1000), sum((y<.55)/1000))
+print(z2NewVector) #[1] 0.321 0.055 0.070
+```
+c) e^z
+```{r}
+z3 <-exp(z)
+y <- z3[z3>.45]
+z3NewVector <- c(sum((z3<.1)/1000), sum((z3>.9)/1000), sum((y<.55)/1000))
+print(z3NewVector) #[1] 0 1 0
+```
+d) square root of z
+```{r}
+z4 <- sqrt(z)
+y <- z4[z4>.45]
+z4NewVector <- c(sum((z4<.1)/1000), sum((z4>.9)/1000), sum((y<.55)/1000))
+print(z4NewVector) #[1] 0.010 0.200 0.084
+```
+for each case calculate your vector of 3 numbers to get the new proportions.
