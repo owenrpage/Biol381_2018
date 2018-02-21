@@ -1,0 +1,47 @@
+
+title: "Hw5"
+author: "Owen R. Page"
+date: "February 14, 2018"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+1)
+```{r}
+#find: \s{2,}
+#replace:, 
+```
+
+2)
+```{r}
+#find: (\w+),\s(\w+), (.*)
+#replace: \2 \1 (\3)
+```
+
+3)
+```{r}
+#a)
+#find: \s(\d{3,})
+#replace:\n\1
+#b)
+#find: (\d{4}) (.*) (\w+)(\.\w+)
+#replace: \2 \3_\1\4
+```
+
+
+4a)
+```{r}
+#find:(\w)\w+,(\w\w+),\d+.\d+,(\d*)
+#replace:\1\2,\3
+```
+
+4b)
+```{r}
+#find:(\w)\w+,(\w{4})\w+,\d+.\d+,(\d*)
+#replace:\1_\2,\3
+```
+
+
