@@ -1,0 +1,257 @@
+---
+title: "HW7"
+author: "Owen R. Page"
+date: "March 7, 2018"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+2) Making a function to create random normal data for il-13 and il-33 cq values based on the following parameters:
+n=50 for both. N as 50 as this should definitely serve as an effective sample size. 
+The mean of IL 13 is 30.4 and sd is 1.6 as these would serve as good representative values from similar data which I have seen. The same logic went for IL 33.
+
+3) Now generating data based on these values in the form of a normal distribution.
+```{r}
+library(ggplot2)
+dataCreate <- function(mean2= 22.2, mean1=30.4, n1=50, n2=50, sd1=1.6, sd2=2.2){
+  mydf <- data.frame(il13=rnorm(mean=mean1, n=n1, sd=sd1), il33= rnorm(mean=mean2, n=n2, sd=sd2))
+  return(mydf)
+}
+
+myDF1 <- dataCreate()
+head(myDF1)
+# melt(myDF1) places it in a format that can be used to perform an anova
+```
+
+ 4) Making a function to analyze the random data using a linear regression to determine if a relationship between the two continuous variables is present:
+```{r}
+myReg <- function(data=myDF1){
+  lreg<- lm(il13~il33, data=data)
+  return(lreg)
+ 
+}
+lregr1 <- myReg()
+```
+
+4) Making a graph to visualize the data:
+```{r}
+myGraph <- function(data=lregr1){
+  regPlot <- ggplot( data=data, mapping=aes(x=il33, y=il13))+
+    geom_point()+
+    stat_smooth(method=lm)
+  
+  return(regPlot)
+}
+plot1 <-myGraph()
+plot1
+```
+Results of linear regression model:
+```{r}
+print(summary(lregr1)$coefficients)
+```
+Notice that the y intercept seems to be significant yet the slope of IL-33 in relationship to IL-13 seems to be non-significant. 
+
+
+5) Now let's run this multiple times without changing the parameters:
+
+1.
+```{r}
+myDF1 <- dataCreate()
+lregr1 <- myReg()
+plot1 <-myGraph()
+plot1
+print(summary(lregr1)$coefficients)
+```
+2.
+```{r}
+myDF1 <- dataCreate()
+lregr1 <- myReg()
+plot1 <-myGraph()
+plot1
+print(summary(lregr1)$coefficients)
+```
+3.
+```{r}
+myDF1 <- dataCreate()
+lregr1 <- myReg()
+plot1 <-myGraph()
+plot1
+print(summary(lregr1)$coefficients)
+```
+4.
+```{r}
+myDF1 <- dataCreate()
+lregr1 <- myReg()
+plot1 <-myGraph()
+plot1
+orimod<-print(summary(lregr1)$coefficients)
+```
+
+As you can see from the results, some of the slopes calculated by the regression model are positive, some are negative, and overall the non-zero slope is not statistically significant. To me at least, this makes sense as we generated two normal distributions that were never set to be related to one another in any way (so therefore it makes sense that the relationship is random).
+
+6) Now let's try and tweak our parameters around to see if we can generate a significant slope.
+```{r}
+myDF2 <- dataCreate(n1=100, n2=100)
+lregr2 <- myReg(data=myDF2)
+plot2 <-myGraph(data=lregr2)
+plot2
+print(summary(lregr2)$coefficients)  
+```
+First I  doubled the overall sample size so there were 100 values for IL13 and IL33 respectively.
+This doubling doesn't really do much to alter the p value. Notice that the p-value after doubling the parameters is only .2 whilst beforehand (when the number of samples was fifty), the p-value was roughly in the same ballpark, ranging from .1 to .9 in some instances. This ultimately does make a bit of sense as all of the values have been generated randomly. Let us try increasing n to 200.
+```{r}
+myDF2 <- dataCreate(n1=200, n2=200)
+lregr2 <- myReg(data=myDF2)
+plot2 <-myGraph(data=lregr2)
+plot2
+sampleinc<- print(summary(lregr2)$coefficients)  
+```
+Adjusting the number of samples with these current means does little to alter the p value for the slope of the best fit line.
+
+Now let us decrease the mean of IL-33:
+```{r}
+myDF2 <- dataCreate(mean2=15.5)
+lregr2 <- myReg(data=myDF2)
+plot2 <-myGraph(data=lregr2)
+plot2
+il33dec <-print(summary(lregr2)$coefficients)  
+```
+
+Now let us increase the value of IL-33
+```{r}
+myDF2 <- dataCreate(mean2=30.3)
+lregr2 <- myReg(data=myDF2)
+plot2 <-myGraph(data=lregr2)
+plot2
+il33inc<- print(summary(lregr2)$coefficients)  
+```
+
+
+Now let us adjust the standard deviation for IL-33:
+
+First decrease:
+```{r}
+myDF2 <- dataCreate(sd2=1.5)
+lregr2 <- myReg(data=myDF2)
+plot2 <-myGraph(data=lregr2)
+plot2
+sd2dec<-print(summary(lregr2)$coefficients)  
+```
+
+Then increase:
+```{r}
+myDF2 <- dataCreate(sd2=3)
+lregr2 <- myReg(data=myDF2)
+plot2 <-myGraph(data=lregr2)
+plot2
+sd2inc<- print(summary(lregr2)$coefficients)  
+```
+Not adjusting the mean or standard deviation for IL33 has given us significant data.
+```{r}
+orimod[2,4]
+sampleinc[2,4]
+il33inc[2,4]
+il33dec[2,4]
+sd2inc[2,4]
+sd2dec[2,4]
+```
+Let us try the same process now for IL 13
+Increase il13:
+```{r}
+myDF2 <- dataCreate(mean1=35)
+lregr2 <- myReg(data=myDF2)
+plot2 <-myGraph(data=lregr2)
+plot2
+sd2inc<- print(summary(lregr2)$coefficients)  
+```
+Lower il13:
+```{r}
+myDF2 <- dataCreate(mean1=28)
+lregr2 <- myReg(data=myDF2)
+plot2 <-myGraph(data=lregr2)
+plot2
+sd2inc<- print(summary(lregr2)$coefficients)  
+```
+increase standard deviation for il13:
+```{r}
+myDF2 <- dataCreate(sd1=3)
+lregr2 <- myReg(data=myDF2)
+plot2 <-myGraph(data=lregr2)
+plot2
+sd2inc<- print(summary(lregr2)$coefficients)  
+```
+decrease the standard deviation for il13:
+```{r}
+myDF2 <- dataCreate(sd1=1)
+lregr2 <- myReg(data=myDF2)
+plot2 <-myGraph(data=lregr2)
+plot2
+sd2inc<- print(summary(lregr2)$coefficients)  
+```
+
+All of these alterations of parameters do nothing to produce significant results, which would indicate that IL13 and IL33 are not correlated. This is known to be false from the literature. 
+
+This spurred me to try something new: what happens if I make the standard deviations .1 for both?
+```{r}
+myDF3 <- dataCreate(sd1=.1, sd2=.1)
+lregr3 <- myReg(data=myDF3)
+plot3 <-myGraph(data=lregr3)
+plot3
+rel3<- print(summary(lregr3)$coefficients)  
+```
+
+After all of this work I have come to the conclusion that due to the randomness present in the normal distribution model I created, I will not be able to successfully obtain a consistently significant p value.
+
+So at this point, I decided to try something new and simulate the data in a different manner:
+```{r}
+# new simulated data model
+n <- 50
+il33 <- 22.2 + runif(n, min=-2.2,max=2.2)
+il13 <- 1.369*il33 + runif(n,min=-1.6, max=1.6) 
+ID <- seq_len(n)
+regData <- data.frame(ID,il33,il13)
+#linear model
+regModel <- lm(il13~il33, data=regData)
+summary(regModel)$coefficients
+z <- summary(regModel)
+z$coefficients
+mySlope <- z$coefficients[2,1]
+pvalue<-summary(regModel)$coefficients[2,4]
+# this will most definitely give us a significant p value. Now to put it into a model
+# now to put this into a function
+
+dataCreate <- function(mean1=22.2, n1=50, n2=50){
+  mydf <- data.frame(il33= mean1+ runif(n, min=-2.2,max=2.2), il13= 1.369*mean1+ runif(n,min=-1.6, max=1.6))
+  return(mydf)
+}
+myDF1 <- dataCreate()
+
+myReg <- function(data=myDF1){
+  lreg<- lm(il13~il33, data=data)
+  return(lreg)
+}
+lregr1 <- myReg()
+summary(lregr1)
+
+myGraph <- function(data=lregr1){
+  regPlot <- ggplot( data=data, mapping=aes(x=il33, y=il13))+
+    geom_point()+
+    stat_smooth(method=lm)
+  
+  return(regPlot)
+}
+plot1 <-myGraph()
+plot1
+pvalue <-print(summary(lregr1)$coefficients[2,4])
+summary(regModel)$coefficients
+z <- summary(regModel)
+z$coefficients
+mySlope <- print(z$coefficients[2,1])
+
+```
+
+In short I am still figuring out how to create a model that consistently provides signficant data:
+this is a placeholder I will be updating this in the future.
