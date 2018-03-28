@@ -29,4 +29,6 @@ A photo of myself:
 + [Homework 4](hw.html)
 + [Homework 5](hw5.html)
 + [Homework 6](hw6.html)
-+ [Homework 7(placeholder as the simulated model is giving weird results)](hw7.html)
++ [Homework 7/8(placeholder as the simulated model is giving weird results)](hw7.html)
++ [Homework 9](hw9.html)
++ [Homework 10](HW10.html)
