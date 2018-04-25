@@ -32,3 +32,8 @@ A photo of myself:
 + [Homework 7/8(placeholder as the simulated model is giving weird results)](hw7.html)
 + [Homework 9](hw9.html)
 + [Homework 10](HW10.html)
++ [Homework 11]
++ [Homework 12]
+
++ [EpiModel Presentation code](EpiModel file.R)
++ [Epimodel .pdf](EMp2.pdf)

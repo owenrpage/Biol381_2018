@@ -1,0 +1,92 @@
+---
+title: "hw11"
+author: "Owen R. Page"
+date: "April 4, 2018"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+1)
+```{r}
+
+#------------------------------------------#N_e=4pidx
+#############################################
+# FUNCTION: PopulationAreaCurve
+# creates a function for the effective population size
+# input: d = vector of population densityelements of a system
+#      : x = parameter for individual dispersal
+#      
+# output: N_E: vector of effective population size
+#--------------------------------------------
+PopulationAreaCurve <- function(d = 1:2000,
+                             x=1.38){
+  N_E <- 4*pi*d*x
+  return(N_E)
+}
+
+head(PopulationAreaCurve())
+
+PopulationAreaCurve()
+
+#############################################
+# FUNCTION: PopulationAreaPlot
+# plot curve in base graphics
+## input: d = vector of population densityelements of a system
+#      : x = parameter for individual dispersal
+# output: base graph with parameter values
+#--------------------------------------------
+PopulationAreaPlot <- function(d = 1:2000,
+                               x=1.38){
+                            
+  plot(x=d, y= PopulationAreaCurve(d,x),
+       type="l",
+       xlab="Population density of a system",
+       ylab="N_E"
+       #ylim =c(0,.001),
+      # xlim=c(1000,2000)
+      )
+  mtext(paste("d=",d, "x",x), cex=0.7)     
+  
+  return()
+}
+PopulationAreaPlot()
+
+
+# now build a grid of plots each with different parameter values
+
+#global variables
+library(ggplot2)
+
+
+xPars <- c(0.10,1.16,0.26,0.30, 1.38, 2.5)
+Density <- 1:5
+par(mfrow=c(1,6)) # create a grid of plots
+for(i in 1:length(xPars)){
+    
+    PopulationAreaPlot(x=xPars[i])
+} 
+
+
+# set up model frame
+modelFrame <- expand.grid(x=xPars,
+                          d=Density)
+head(modelFrame)
+View(modelFrame)
+modelFrame$N_E <- NA
+
+# loop for filling new data frame
+
+for (i in 1:length(xPars)){
+     modelFrame[modelFrame$x==xPars[i], "N_E"] <- PopulationAreaCurve(d=Density, x=xPars[i])
+  } # xPars loop
+View(modelFrame)
+
+p1<- ggplot(data=modelFrame)
+p1 + geom_line(mapping=aes(x=d, y=N_E))+
+  facet_grid(.~x)
+p1
+```
+
