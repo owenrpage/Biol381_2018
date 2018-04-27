@@ -192,23 +192,13 @@ plotRanTest<- function(z=NULL){
   dF <- data.frame(ID=seq_along(z[[2]]), 
                    simX=z[[2]])
   p1 <- ggplot(data=dF, mapping=aes(x=simX))
-  p1 + geom_histogram(mapping=aes(fill=I("goldenrod"), color=I("black")))+ 
+  p1 + geom_histogram(mapping=aes(fill=I("seagreen4"), color=I("black")))+ 
     geom_vline(aes(xintercept=z[[1]],col="blue"))
 }
 #############################################
 plotRanTest()
 
-#----------------------
-#main body of the code
-nSim <- 1000
-Xsim <- rep(NA,nSim) # will hold simulated slopes
-dF <- readData()
-Xobs <- getMetric(dF)
-for (i in seq_len(nSim)) {
-  Xsim[i] <- getMetric(shuffleData(dF)) }
-slopes <- list(Xobs,Xsim)
-getPVal(slopes) 
-plotRanTest(slopes)
+
 
 # main body of code
 nSim <- 1000 # number of simulations
@@ -220,3 +210,4 @@ for (i in seq_len(nSim)) {
 slopes <- list(Xobs,Xsim)
 getPVal(slopes)
 
+plotRanTest(slopes)

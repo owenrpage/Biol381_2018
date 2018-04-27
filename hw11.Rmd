@@ -90,3 +90,151 @@ p1 + geom_line(mapping=aes(x=d, y=N_E))+
 p1
 ```
 
+```{r}
+#2
+#preliminaries
+library(ggplot2)
+library(TeachingDemos)
+char2seed("lilac")
+
+#############################################
+# FUNCTION: readData
+# read in or generate data frame
+# input: file name (or nothing for demo
+# output: 3-column data frame of observed data (ID, x, y)
+#--------------------------------------------
+readData <- function(z=NULL){
+  if(is.null(z)){
+    xVar <- iris$Sepal.Length
+    yVar <- iris$Petal.Length
+    dF <- data.frame(ID=seq_along(xVar), xVar, yVar)
+  } #end compound statement if there isn't any input
+  return(dF)
+} #end function
+#############################################
+readData()
+
+#############################################
+# FUNCTION: getMetric
+# calculate metric for randomization test
+# input: 3-column data frame for regression
+# output: regression slope
+#--------------------------------------------
+getMetric <- function(z=NULL){
+  if(is.null(z)){
+  xVar <- iris$Sepal.Length
+  yVar <- iris$Petal.Length
+  z <- data.frame(ID=seq_along(xVar), xVar, yVar)}
+  
+  . <- lm(z[,3]~z[,2])
+  . <- summary(.)
+  . <- .$coefficients[2,1]
+  slope <-.
+  return(slope)
+}
+############################################
+getMetric()
+x <- getMetric()
+
+#############################################
+# FUNCTION: shuffleData
+# randomize data for regression analysis; decoupling association b/w x and y
+# input: 3-column data frame w/ ID, xVar, yVar
+# output: 3-column data frame w/ ID, xVar, yVar (but shuffled...)
+#--------------------------------------------
+shuffleData <- function(z=NULL){
+  if(is.null(z)){  
+  xVar <- iris$Sepal.Length
+    yVar <- iris$Petal.Length
+    z <- data.frame(ID=seq_along(xVar), xVar, yVar)}
+    
+  
+  z[,3] <- sample(z[,3])
+  return(z)
+}
+#############################################
+shuffleData()
+
+
+#############################################
+# FUNCTION: getPVal
+# calculate p value for observed, simulated data
+# input: list of observed metric and vector of simulated metric
+# output: lower, upper tail probability
+#--------------------------------------------
+getPVal <- function(z=NULL){
+  if(is.null(z)){
+    z <- list(xObs=runif(1), xSim=runif(1000)) }
+  
+  #nSim <- 150
+  #Xsim <- rep(NA,nSim) # will hold simulated slopes
+  #Xobs <- getMetric(data=iris)
+
+  #for (i in seq_len(nSim)) {
+  #  z <- list(xObs=runif(1), xSim=runif(1000)) }
+  
+  pLower <- mean(z[[2]] <=z[[1]])
+  pUpper <- mean(z[[2]] >=z[[1]])
+  
+     #   Xsim[i] <- getMetric(shuffleData(z)) }  
+  #  z <- list(Xobs, Xsim)
+#  pLower <- mean(z[[2]] <=z[[1]])
+ # pUpper <- mean(z[[2]] >=z[[1]])
+  
+  return(c(pL=pLower, pU=pUpper))
+}
+
+#############################################
+getPVal()
+
+
+#############################################
+# FUNCTION: plotRanTest
+# ggplot graph
+# input: list of observed metric and vector of simulated metric
+# output: ggplot graph
+#--------------------------------------------
+plotRanTest<- function(z=NULL){
+  #xVar <- iris$Sepal.Length
+  #yVar <- iris$Petal.Length
+  #z <- data.frame(ID=seq_along(xVar), xVar, yVar)
+  #  z <- list(XObs=runif(1), xSim=runif(1000)) 
+  if(is.null(z)){
+    z <- list(xObs=runif(1), xSim=runif(1000)) }
+  
+  dF <- data.frame(ID=seq_along(z[[2]]), 
+                   simX=z[[2]])
+  p1 <- ggplot(data=dF, mapping=aes(x=simX))
+  p1 + geom_histogram(mapping=aes(fill=I("seagreen4"), color=I("black")))+ 
+    geom_vline(aes(xintercept=z[[1]],col="blue"))
+}
+#############################################
+plotRanTest()
+
+
+
+# main body of code
+nSim <- 1000 # number of simulations
+Xsim <- rep(NA,nSim) # will hold simulated slopes
+dF <- readData()
+Xobs <- getMetric(dF)
+for (i in seq_len(nSim)) {
+  Xsim[i] <- getMetric(shuffleData(dF))}
+slopes <- list(Xobs,Xsim)
+getPVal(slopes)
+
+plotRanTest(slopes)
+
+```
+
+Question 3:
+```{r}
+lm <- lm(iris$Sepal.Length ~ iris$Petal.Length, data = readData())
+summary(lm)
+
+lmShuf <- lm(iris$Sepal.Length ~ iris$Petal.Length, data = shuffleData())
+summary(lmShuf)
+```
+
+I keep getting the same
+ p values for both the shuffle data and the normal data and I'm not entirely sure why.
