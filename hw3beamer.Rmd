@@ -14,50 +14,54 @@ output:
 knitr::opts_chunk$set(echo = FALSE)
 ```
 
-## Overview
-- Introduction
-- Hypothesis
--Methods
-- Results/ Analysis
--Bigger Picture
-<center> ![Picture of myself](Owen.jpg) <center> 
+## Pathogenesis of asthma
+\begin{picture}(250,250)
+\put(50,60){\includegraphics[height=6cm]{allerAsth.jpg}}
+\end{picture}
 
-## Slide with incremental bullet points.
+## Pathogenesis of Allergic Asthma.
 
-- Bullet 1
-- Bullet 2
-- Bullet 3
+- Th2 polarized immune response
+- IL-4/IL-13 phosphorylate STAT6 leading to Th2 cell activation
+- Characterized by a IgE to IgM antibody shift
+- result of repeated injury and repair
 
-## Slide with simulataneous bullet points.
+## Pulmonary Remodeling
+\begin{picture}(250,250)
+\put(90,110){\includegraphics[height=5cm]{airway.jpg}}
+\put(5,100){\begin{minipage}[t]{1\linewidth} 
+{Here we have a normal airway to the left and an asthmatic airway to the right with pulmonary remodeling. Sub-epithelial collagen (red), goblet cell mucus metaplasia(blue), and some airway hyperresponsiveness}
+\end{minipage}}
+\end{picture}
+ 
 
->- first simultaneous bullet point
->- second simultaneous bullet point
->- third simultaneous bullet point
+## Introduction of key players
 
-## Slide with text in alternating colors.
+>- JNK1
+>- \color{gray} IL-13
+>- \color{red} STAT6
+>- \color{gray} IL-33 
+>- \color{black} Hypothesis: Epithelial JNK1 drives  airway remodeling via regulating IL-33 induced IL-13- expression and resultant downstream phosphorylation of STAT6.
 
->- Black text
->- \color{gray} First point in a color
->- \color{red} Now I have changed the color
->- \color{gray} back to the original color 
->- \color{black} and finally a different color
 
-## Two images
+## Hypothesis figures
 
-\begin{picture}(320,250)
-\put(85,75){\includegraphics[height=6cm] 
-{Owen.jpg}}
-\put(00,60){\begin{minipage}[t]{1\linewidth}
-{Choose a point on the unit circle. Connect it to  the origin with a line of length one, and denote the angle between that line and the horizontal coordinate axis by $\theta$.}
+
+> - 1) Model of pathway
+> - 2) role of IL-33 on non-epithelial cell secretion
+
+\begin{picture}(250,250)
+\put(-30,130){\includegraphics[height=4cm]{hyp1.jpg}}
+\put(150,130){\includegraphics[height=4cm]{hyp2.jpg}}
+\end{picture}
+
+## Phosphorylation of STAT6 Immuno-Fluorescence Stain
+
+\begin{picture}(280,280)
+\put(00,80){\includegraphics[height=7cm]{pstat.jpg}}
+\put(20,170){\begin{minipage}[t]{1\linewidth} 
+{\color{white} 24hr PBS JNK1 WT (left) and 1hr HDM JNK1 WT (right)}
 \end{minipage}}
 \end{picture}
 
 
-
-## Two images with captions
-
-
-## Two images with overlaid captions
----
-
-```\noindent\hspace\{<position>}<text>``` and putting two pictures in one beamer slide
