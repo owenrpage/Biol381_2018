@@ -11,7 +11,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 1)  This first image is a proposed compartmental model that I was toying around with when trying to come up with an image. It is a manner by which to think about changing states of tissue from normal to inflammed and finally to a state known as remodeled (wherein remodeling will be defined as the manifestation of collagen depostion, mucus metaplasia, and airway hyperresponsiveness.
 Pi(t) represents the cell birth pool, N(t) normal tissue with theta being the rate of proliferation, I(t) was inflammed tissue with lambda as rate of inflammation and phi being a successful inflammatory response, R(t) represents remodeled tissue, and rho represents remodeling while sigma represents reversal of remodeling. Finally, there are death rates that go into the compartment delta.
-[Compartmental Model for Epithelial Pulmonary tissue](TissueRemodeling.jpg)
+[Compartmental Model for Epithelial Pulmonary tissue](TissueRemodelingModel.jpg)
 
 2) This is an image of my experimental groups that I listed just to make it easier for myself to formulate predictions:
 [Experimental Groups](ExperimentalGroups.jpg)
