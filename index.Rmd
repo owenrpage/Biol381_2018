@@ -7,7 +7,7 @@ output:
     theme: leonids
     highlight: github
 ---
-<img src= “Owen.jpg” width=“300” : height=“300”>
+
 
 ## Owen Page's Webpage
   Hello, my name is Owen Page. I am a senior undergraduate at UVM studying biology, and I currently work in the Janssen-Heininger lab in the Pathology Department. Also in association with the Vermont Lung Center, our lab focuses on redox biology and lung diseases such as Ideopathic Pulmonary Fibrosis, mild to severe allergic or obesity-induced asthma, and non-small cell lung cancer.We specifically focus on the effects of S-glutathionylation within the lungs. 
@@ -17,8 +17,7 @@ output:
 email: opage@uvm.edu
 
 A photo of myself:
-<img src= "Owen.jpg" width="300" : height="300">
-
+ ![Picture of myself](Owen.jpg)
 
 * My GitHub homepage: https://github.com/owenrpage/Biol381_2018/
 * My  BIOL 381 website: https://owenrpage.github.io/Biol381_2018/
