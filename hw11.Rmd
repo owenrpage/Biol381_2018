@@ -236,5 +236,4 @@ lmShuf <- lm(iris$Sepal.Length ~ iris$Petal.Length, data = shuffleData())
 summary(lmShuf)
 ```
 
-I keep getting the same
- p values for both the shuffle data and the normal data and I'm not entirely sure why.
+I keep getting the same p values for both the shuffle data and the normal data and I'm not entirely sure why.

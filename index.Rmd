@@ -16,8 +16,8 @@ output:
 
 email: opage@uvm.edu
 
-A photo of myself:
- ![Picture of myself](Owen.jpg)
+A photo of myself taken at a UVM basketball game when I was apparently sitting behind the commentators:
+ ![](Owen.jpg)
 
 * My GitHub homepage: https://github.com/owenrpage/Biol381_2018/
 * My  BIOL 381 website: https://owenrpage.github.io/Biol381_2018/
@@ -28,11 +28,12 @@ A photo of myself:
 + [Homework 4](hw.html)
 + [Homework 5](hw5.html)
 + [Homework 6](hw6.html)
-+ [Homework 7/8(placeholder as the simulated model is giving weird results)](hw7.html)
++ [Homework 7/8](hw7.html)
 + [Homework 9](hw9.html)
 + [Homework 10](HW10.html)
 + [Homework 11](hw11.html)
-+ [Homework 12]
++ [Homework 12](Homework_12.html)
+
 
 + [EpiModel Presentation code](EpiModel file.R)
 + [Epimodel .pdf](EMp2.pdf)

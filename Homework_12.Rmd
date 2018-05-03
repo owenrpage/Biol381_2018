@@ -1,10 +1,27 @@
+---
+title: "HW12_ggplot"
+author: "Owen R. Page"
+date: "April 15, 2018"
+output: html_document
+---
 
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+I will be using the data set ```iris```
+
+Preliminaries:
+```{r}
 library(ggplot2)
 library(patchwork)
 library(ggthemes)
 library(TeachingDemos)
 char2seed("petrel and the porpoise")
+```
 
+The first graph is the smoothed regression lines by species for the continuous variables of sepal width and petal length:
+```{r}
 g1 <- ggplot(data=iris, mapping=aes(x=Sepal.Width, y=Petal.Length, col=Species))+
   geom_smooth(method="lm", se=FALSE)+
   theme_economist_white(base_family="serif")+
@@ -14,25 +31,37 @@ g1 <- ggplot(data=iris, mapping=aes(x=Sepal.Width, y=Petal.Length, col=Species))
 
 
 g1
+```
 
-
+The second graph is more simply a boxplot by species of petal length with the data points present:
+```{r}
 g2 <- ggplot(data=iris, mapping=aes(x=Species, y=Petal.Length, fill=Species))+
   theme_classic(base_family="serif")+
   geom_boxplot()+
   geom_point(position=position_jitter(width=0.2, height=0.7), color="grey30", alpha=0.4)
 g2
+```
 
+The third graph is a histogram of petal width further broken up for each species: 
+```{r}
 g3 <- ggplot(data=iris, mapping=aes(x=Petal.Width, fill=Species))+
   geom_histogram(position='Dodge')+
   theme_economist(base_family="serif")
 g3
+```
 
+Finally the fourth graph is of two continuous variables, sepal width and sepal length with a third variable included via a colour gradient:
+```{r}
 g4 <- ggplot(data=iris, mapping=aes(x=Sepal.Length, y=Sepal.Width, color=Petal.Length))+
   geom_point()+
   scale_fill_brewer(palette="Blues")+
   theme_dark(base_family="serif")
 g4
+```
 
 
+I used patchwork to put all four graphs together in two rows. I elected to make the second column wider as I believed this suited the data and make it easier to visualize:
+```{r}
 g2 + g3 + g1 +g4 + plot_layout(ncol=2, widths=c(1,2))
+```
 

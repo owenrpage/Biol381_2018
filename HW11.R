@@ -196,7 +196,6 @@ plotRanTest<- function(z=NULL){
     geom_vline(aes(xintercept=z[[1]],col="blue"))
 }
 #############################################
-plotRanTest()
 
 
 
@@ -211,3 +210,18 @@ slopes <- list(Xobs,Xsim)
 getPVal(slopes)
 
 plotRanTest(slopes)
+plotRanTest()
+
+
+lm <- lm(iris$Sepal.Length ~ iris$Petal.Length, data = readData())
+summary(lm)
+
+lmShuf <- lm(iris$Sepal.Length ~ iris$Petal.Length, data = shuffleData())
+summary(lmShuf)
+
+
+lm <- lm(iris$Sepal.Length ~ iris$Petal.Length, data = readData())
+summary(lm)
+
+lmShuf <- lm(iris$Sepal.Length ~ iris$Petal.Length, data = shuffleData())
+summary(lmShuf)
