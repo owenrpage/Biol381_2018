@@ -13,6 +13,10 @@ myReg <- function(data=myDF1){
   lreg<- lm(sepalLen~sepalWid, data=data)
   return(lreg)
  
+  
+z <- lm(Sepal.Length~Sepal.Width, data=iris)  
+z  
+summary(z)
 }
 lregr1 <- myReg()
 summary(lregr1)
@@ -47,12 +51,31 @@ lregr3 <- myReg(data=myDF3)
 plot3 <-myGraph(data=lregr3)
 plot3
 rel3<- print(summary(lregr3)$coefficients)
+rel3[2,4]
+
 #increasing sd
-myDF2 <- dataCreate(sd1=3)
-lregr2 <- myReg(data=myDF2)
+myDF4 <- dataCreate(sd1=3)
+lregr4 <- myReg(data=myDF4)
 #plot2 <-myGraph(data=lregr2)
 #plot2
-sd2inc<- print(summary(lregr2)$coefficients)
+sd1inc<- print(summary(lregr4)$coefficients)
+sd1inc[2,4]
+
+
+#increasing mean and decreasing sd
+myDF5 <- dataCreate(sd1=.05, sd2=.05, n1=500, n2=500)
+lregr5 <- myReg(data=myDF5)
+plot5 <-myGraph(data=lregr5)
+plot5
+rel5<- print(summary(lregr5)$coefficients)
+rel5[2,4]
+
+
+
+
+
+
+
 
 # new simulated data model
 n <- 50

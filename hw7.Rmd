@@ -254,4 +254,85 @@ mySlope <- print(z$coefficients[2,1])
 ```
 
 In short I am still figuring out how to create a model that consistently provides signficant data:
-this is a placeholder I will be updating this in the future.
+this is a placeholder I will be updating this in the future. We also end up seeing, however, that the significance of the intercept is pretty much non-existent.
+
+Part II
+I therefore attempted to perform the same tasks with ```iris``` data. The values for standard deviations, means, etc. I obtained in HW_6.
+
+```{r}
+dataCreate <- function(mean1=5.84, mean2=3.05, n1=150, n2=150, sd1=.8253, sd2=.4344){
+  mydf <- data.frame(sepalLen=rnorm(mean=mean1, n=n1, sd=sd1), sepalWid= rnorm(mean=mean2, n=n2, sd=sd2))
+  return(mydf)
+}
+myDF1 <- dataCreate()
+
+head(myDF1)
+# melt(myDF) places it in a format that can be used to perform an anova
+
+myReg <- function(data=myDF1){
+  lreg<- lm(sepalLen~sepalWid, data=data)
+  return(lreg)
+ 
+}
+lregr1 <- myReg()
+summary(lregr1)
+
+myGraph <- function(data=lregr1){
+  regPlot <- ggplot( data=data, mapping=aes(x=sepalWid, y=sepalLen))+
+    geom_point()+
+    stat_smooth(method=lm)
+  
+  return(regPlot)
+}
+plot1 <-myGraph()
+plot1
+results1 <-print(summary(lregr1)$coefficients)
+pvalue <-print(summary(lregr1)$coefficients[2,4])
+
+#increasing N
+myDF2 <- dataCreate(n1=500, n2=500)
+lregr2 <- myReg(data=myDF2)
+plot2 <-myGraph(data=lregr2)
+plot2
+results2 <- print(summary(lregr2)$coefficients) 
+
+
+
+results1[2,4]
+results2[2,4]
+
+# decreasing sd
+myDF3 <- dataCreate(sd1=.1, sd2=.1)
+lregr3 <- myReg(data=myDF3)
+plot3 <-myGraph(data=lregr3)
+plot3
+rel3<- print(summary(lregr3)$coefficients)
+rel3[2,4]
+
+#increasing sd
+myDF4 <- dataCreate(sd1=3)
+lregr4 <- myReg(data=myDF4)
+#plot2 <-myGraph(data=lregr2)
+#plot2
+sd1inc<- print(summary(lregr4)$coefficients)
+sd1inc[2,4]
+
+
+#increasing mean and decreasing sd
+myDF5 <- dataCreate(sd1=.05, sd2=.05, n1=500, n2=500)
+lregr5 <- myReg(data=myDF5)
+plot5 <-myGraph(data=lregr5)
+plot5
+rel5<- print(summary(lregr5)$coefficients)
+rel5[2,4]
+```
+
+As you can see once more for the most part we see a similar trend. Tweaking the parameters may make the p value smaller but I am still struggling to find any sort of significance between the obersvations. I therefore performed a linear regression on the two observations of sepal length and width and got the following result which actually seemed to validate my previous code:
+```{r}
+
+z <- lm(Sepal.Length~Sepal.Width, data=iris)  
+z
+summary(z)
+```
+This leads me to wonder if the reason why I am not able to consistently obtain a significant p value may in fact be due to the fact that I am using rnorm for the variables and I could do rnorm() when simulating one observation but relate the other observation to the first via an equation(this, however, already indicates that there is a relationship between the two observations). Also picking different observations within ```iris``` would have helped as well.
+
