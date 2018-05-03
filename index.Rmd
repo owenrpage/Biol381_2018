@@ -19,7 +19,6 @@ email: opage@uvm.edu
 A photo of myself taken at a UVM basketball game when I was apparently sitting behind the commentators:
  ![](Owen.jpg)
 
-* My GitHub homepage: https://github.com/owenrpage/Biol381_2018/
 * My  BIOL 381 website: https://owenrpage.github.io/Biol381_2018/
 
 ### Homework:
